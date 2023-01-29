@@ -1,0 +1,109 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_profile_picture/flutter_profile_picture.dart';
+// import 'package:my_yt_project/product_detail_screen.dart';
+
+class UserScreen extends StatefulWidget {
+  const UserScreen({Key? key}) : super(key: key);
+
+  @override
+  State<UserScreen> createState() => _UserScreenState();
+}
+
+class _UserScreenState extends State<UserScreen> {
+  List userImage = [
+    '',
+    '',
+    'https://picsum.photos/200/300?random=8',
+    '',
+    '',
+    '',
+    'https://picsum.photos/200/300?random=1',
+    '',
+    'https://picsum.photos/200/300?random=2',
+    ''
+  ];
+  List userName = [
+    'Thomas Ariston',
+    'Jenifer Vilia',
+    'Firena Melta',
+    'Christin Lana',
+    'Alfred Satso',
+    'Jesica Kimar',
+    'Bella Bond',
+    'Tom Hung',
+    'Amaan Athar',
+    'Julia Jhonson'
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('User List'),
+          backgroundColor: Colors.blueGrey,
+        ),
+        backgroundColor: Colors.blueGrey,
+        body: Column(
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: userImage.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 10.0),
+                        child: Row(
+                          children: [
+                            userImage[index] != ''
+                                ? ProfilePicture(
+                                    name: '',
+                                    radius: 25,
+                                    fontsize: 18,
+                                    img: userImage[index],
+                                    random: true,
+                                  )
+                                : ProfilePicture(
+                                    name: userName[index],
+                                    radius: 25,
+                                    fontsize: 18,
+                                    // img: 'assets/'+userImage[index],
+                                    random: true,
+                                  ),
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            Expanded(
+                              child: Text(
+                                userName[index],
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                ),
+                                maxLines: 2,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
